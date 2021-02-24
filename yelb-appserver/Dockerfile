@@ -1,4 +1,4 @@
-FROM bitnami/ruby:2.4.2-r1
+FROM ruby:2.5.1-stretch
 MAINTAINER massimo@it20.info
 
 ################## BEGIN INSTALLATION ######################
