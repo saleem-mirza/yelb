@@ -99,6 +99,10 @@ spec:
         image:  mreferre/yelb-ui:0.7
         ports:
         - containerPort: 80
+        resources:
+          limits:
+            cpu: 500m
+            memory: 500Mi  
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -121,6 +125,10 @@ spec:
         image: redis:4.0.2
         ports:
         - containerPort: 6379
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1000Mi  
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -143,6 +151,10 @@ spec:
         image:  mreferre/yelb-db:0.5
         ports:
         - containerPort: 5432
+        resources:
+          limits:
+            cpu: 500m
+            memory: 1000Mi  
 ---
 apiVersion: apps/v1
 kind: Deployment
@@ -165,4 +177,7 @@ spec:
         image:  mreferre/yelb-appserver:0.5
         ports:
         - containerPort: 4567
-
+        resources:
+          limits:
+            cpu: 1000m
+            memory: 1000Mi  
