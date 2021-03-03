@@ -22,6 +22,9 @@ spec:
     - virtualService:
         virtualServiceRef:
           name: redis-server
+    - virtualService:
+        virtualServiceRef:
+          name: "www.recipepuppy.com"          
 ---
 apiVersion: appmesh.k8s.aws/v1beta2
 kind: VirtualService

@@ -16,6 +16,7 @@ require_relative 'modules/getvotes'
 require_relative 'modules/restaurant'
 require_relative 'modules/hostname'
 require_relative 'modules/getstats'
+require_relative 'modules/getrecipe'
 require_relative 'modules/restaurantsdbupdate'
 require_relative 'modules/restaurantsdbread'
 
@@ -81,6 +82,14 @@ $redishost = settings.redishost
 if (settings.yelbddbcache != nil) then $yelbddbcache = settings.yelbddbcache end 
 if (settings.yelbddbrestaurants != nil) then $yelbddbrestaurants = settings.yelbddbrestaurants end 
 if (settings.awsregion != nil) then $awsregion = settings.awsregion end 
+
+get '/api/getrecipe' do
+    headers 'Access-Control-Allow-Origin' => '*'
+    headers 'Access-Control-Allow-Headers' => 'Authorization,Accepts,Content-Type,X-CSRF-Token,X-Requested-With'
+    headers 'Access-Control-Allow-Methods' => 'GET,POST,PUT,DELETE,OPTIONS'
+	  content_type 'application/json'
+    @recipelink = getrecipe()
+end #get /api/getrecipe
 
 get '/api/pageviews' do
     headers 'Access-Control-Allow-Origin' => '*'

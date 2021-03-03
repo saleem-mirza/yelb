@@ -41,8 +41,12 @@ stats: any;
 hostname: any;
 pageviews: any;
 gradient: boolean;
+recipelink_pancakes: any;
+recipelink_burritos: any;
+recipelink_steak: any;
+recipelink_lasagne: any;
 view: any[] = [700, 200];
-ngOnInit(){this.getvotes(); this.getstats()}
+ngOnInit(){this.getvotes(); this.getstats(); this.getrecipe()}
 
 getvotes(): void {
     const url = `${this.appserver}/api/getvotes`;
@@ -68,4 +72,19 @@ vote(restaurant: string): void {
                 .subscribe(res => {console.log(res)});    
     this.getvotes()
     }
+    
+getrecipe(): void {
+    //this.recipeLink = "https://www.allrecipes.com/recipe/60500/the-most-incredible-pancake-bites-ever/";
+    const url = `${this.appserver}/api/getrecipe`;
+    console.log("connecting to app server " + url);
+    this.http.get(url)
+                .map((res: Response) => res.json())
+                .subscribe(res => {console.log("recipe link " + res, res.recipelink_pancakes); 
+                this.recipelink_pancakes = res.recipelink_pancakes,
+                this.recipelink_burritos = res.recipelink_burritos,
+                this.recipelink_steak = res.recipelink_steak,
+                this.recipelink_lasagne = res.recipelink_lasagne
+                })   
+    //return this.recipelink_pancakes;
+}
 }

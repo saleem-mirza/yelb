@@ -16,6 +16,8 @@ ENV RACK_ENV=production
 
 RUN gem install sinatra --no-ri --no-rdoc
 RUN gem install redis --no-ri --no-rdoc
+RUN gem install httparty --no-ri --no-rdoc
+
 ### hack to allow the setup of the pg gem (which would fail otherwise)
 RUN apt-get update
 RUN apt-get install libpq-dev -y
@@ -28,6 +30,8 @@ WORKDIR /
 ADD startup.sh startup.sh
 
 ##################### INSTALLATION END #####################
+
+EXPOSE 4567
 
 CMD ["./startup.sh"]
 
